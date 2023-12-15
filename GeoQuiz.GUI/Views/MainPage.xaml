@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeoQuiz.GUI.MainPage"
+             xmlns:ViewModels="clr-namespace:GeoQuiz.GUI.ViewModels;assembly=GeoQuiz.GUI"
+             Title="GeoQuiz"
+             >
+            
+    <ContentPage.BindingContext>
+        <ViewModels:ModeloPreguntaViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="40"
+            Padding="5">
+            <Border Margin="50" Padding="15" HorizontalOptions="Center" WidthRequest="500">
+               
+                <VerticalStackLayout>
+                    <Frame BackgroundColor="MediumPurple" CornerRadius="5" Padding="10">
+                        <Label  Text="{Binding PreguntaActual }" TextColor="White"/>
+                    </Frame>
+                    <HorizontalStackLayout HorizontalOptions="Center" Margin="40">
+                        <Button Text="Cierto" Command="{Binding ComandoCierto}" Margin="0,0,0,0" WidthRequest="70" TranslationY="40" TranslationX="-100"/>
+                        <Button Text="Falso"  Command="{Binding ComandoFalso}" Margin="0,0,0,0" WidthRequest="70" TranslationY="40" TranslationX="100"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Text="Anterior" Command="{Binding ComandoAnterior}" TranslationX="-175" BackgroundColor="MediumPurple" TextColor="White" IsEnabled="True"/>
+                <Button Text="Siguiente" Command="{Binding ComandoSiguiente}" TranslationX="175" BackgroundColor="MediumPurple" TextColor="White" IsEnabled="True"/>
+            </HorizontalStackLayout>
+            <Label Text="{Binding EsCorrecto, StringFormat='{}{0:¡Correcto!;¡Incorrecto!}'}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Border Margin="10" Padding="10" HorizontalOptions="Center" VerticalOptions="End">
+                <HorizontalStackLayout>
+                    <Label Text="{Binding IndiceActual2 , StringFormat='Pregunta: {0}'}" Margin="0,0,0,0" WidthRequest="100"/>
+                    <Label Text="{Binding TotalCorrectas, StringFormat='Respuestas Correctas: {0}'}" Margin="300,0,0,0" WidthRequest="100" TranslationX="-50"/>
+                </HorizontalStackLayout>
+                </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
